@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>MPCS 52553 HW3</title>
+	<meta charset="utf-8">
+</head>
+	<% stations = DivvyStation.all %>
+	<% station = DivvyStation.all.detect {|h| h["id"] == params[:id].to_i} %>
+
+<body>
+<div class="container">
+	<div class="page-header">
+
+		<!-- link to homepage -->
+		<h1><%= link_to 'Divvy Stations', controller: '/stations' %></h1> 
+
+	<!-- Print error message if station doesn't exist -->
+	<% if station.nil? %>
+		<h4><%= "No station found with ID #{params[:id]}." %></h4>
+	</div>
+
+	<!-- Otherwise print station name and display map -->
+	<% else %>
+
+		<h4><%= station["name"] %><!-- insert name of station --></h4>
+	</div>
+
+	<% lat = station["lat"] %>
+	<% long = station["lng"] %>
+						
+	<!-- show_map helper in: app > helpers > application_helper.rb -->
+	<%= show_map(lat, long) %>
+	<!-- image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|#{lat},#{long}&zoom=16&size=700x400&key=AIzaSyD-a2UU_0nTDj7XDsS82lFe2sqU9UxdY64" --> 
+
+	<% end %>
+
+</div>
+</body>
+
+</html>
