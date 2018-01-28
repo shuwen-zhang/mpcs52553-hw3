@@ -6,17 +6,16 @@ class StationsController <ApplicationController
 	
 	def show
 		@station = DivvyStation.all.detect {
-			|h| h["id"] == params[:id].to_i
+			|h| h["id"] == params[:id].to_i		
 		} 
 
-=begin		return not_found if @station.nil?
-=end	
+		return not_found if @station.nil?
 	end
 
 
 =begin 	Alternative 1
 		if DivvyStation.all.any? {
-				|h| h["id"] == params[:id]
+				|h| h["id"] == params[:id]	// must make it .to_i , otherwise won't work
 		}
 			render "show.html.erb" 
 		else

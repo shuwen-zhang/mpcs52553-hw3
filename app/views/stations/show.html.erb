@@ -5,8 +5,6 @@
 	<title>MPCS 52553 HW3</title>
 	<meta charset="utf-8">
 </head>
-	<% stations = DivvyStation.all %>
-	<% station = DivvyStation.all.detect {|h| h["id"] == params[:id].to_i} %>
 
 <body>
 <div class="container">
@@ -16,18 +14,18 @@
 		<h1><%= link_to 'Divvy Stations', controller: '/stations' %></h1> 
 
 	<!-- Print error message if station doesn't exist -->
-	<% if station.nil? %>
+	<% if @station.nil? %>
 		<h4><%= "No station found with ID #{params[:id]}." %></h4>
 	</div>
 
 	<!-- Otherwise print station name and display map -->
 	<% else %>
 
-		<h4><%= station["name"] %><!-- insert name of station --></h4>
+		<h4><%= @station["name"] %><!-- insert name of station --></h4>
 	</div>
 
-	<% lat = station["lat"] %>
-	<% long = station["lng"] %>
+	<% lat = @station["lat"] %>
+	<% long = @station["lng"] %>
 						
 	<!-- show_map helper in: app > helpers > application_helper.rb -->
 	<%= show_map(lat, long) %>

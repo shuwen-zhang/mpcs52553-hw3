@@ -18,6 +18,8 @@
 
 	<!-- List all the divvy stations -->
 	<% stations = DivvyStation.all %>
+	<% station_id = params[:id].to_i %>
+
 	<% stations[1]["name"] %>
 
 	<div class="row table-responsive">
